@@ -37,7 +37,7 @@ jobs:
           command: |
             result=`yarn netlify deploy --build --context deploy-preview --dir ./_site --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}` &&
             echo "${result}" &&
-            body=`echo "Website Draft URL" | grep 'Website Draft URL'` &&
+            body=`echo "${result}" | grep 'Website Draft URL'` &&
             curl -X POST \
               -H "Content-Type:application/json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
