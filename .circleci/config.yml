@@ -35,7 +35,39 @@ jobs:
       - run:
           name: Deploy Preview
           command: |
-            result="Website Draft URL: hoge" &&
+            result="
+────────────────────────────────────────────────────────────────
+  Netlify Build                                                 
+────────────────────────────────────────────────────────────────
+​
+❯ Version
+  @netlify/build 27.20.6
+​
+❯ Flags
+  {}
+​
+❯ Current directory
+  /home/circleci/repo
+​
+❯ Config file
+  No config file was defined: using default values.
+​
+❯ Context
+  deploy-preview
+​
+────────────────────────────────────────────────────────────────
+  Netlify Build Complete                                        
+────────────────────────────────────────────────────────────────
+​
+(Netlify Build completed in 12ms)
+Deploy path: /home/circleci/repo/_site
+Deploying to draft URL...
+
+Logs:              https://app.netlify.com/sites/scintillating-piroshki-928a9d/deploys/64060dda7a20d50b6715d62f
+Website Draft URL: https://64060dda7a20d50b6715d62f--scintillating-piroshki-928a9d.netlify.app
+
+If everything looks good on your draft URL, deploy it to your main site URL with the --prod flag.
+netlify deploy --build --prod" &&
             echo "${result}" &&
             body=`echo "${result}" | grep 'Website Draft URL'` &&
             curl -X POST \
