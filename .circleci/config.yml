@@ -76,8 +76,8 @@ jobs:
           name: Deploy Preview
           command: |
             curl -X POST \
-              -H 'Content-Type:application/json' \
-              -H 'Authorization: token ${secrets.GITHUB_TOKEN}'' \
+              -H "Content-Type:application/json" \
+              -H "Authorization: token ${secrets.GITHUB_TOKEN}" \
               -d "{\"body\":\"CircleCI TEST Deploy Preview" \
               "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
 
