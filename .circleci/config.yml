@@ -75,7 +75,10 @@ jobs:
       - run:
           name: Deploy Preview
           command: |
-            body=`echo 'Deploy Preview'` &&
+            body=`echo 'Deploy Preview'`
+      - run:
+          name: PR Comment
+          command: |
             curl -X POST \
               -H "Content-Type:application/json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
