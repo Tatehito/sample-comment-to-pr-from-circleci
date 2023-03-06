@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Deploy Preview Hoge
           command: |
-            body=`echo "Website Draft URL: https://64061a6de8730706caf7bad0--scintillating-piroshki-928a9d.netlify.app"` &&
+            body=`echo "Website"` &&
             echo "${body}" &&
             body=`echo "${body}" | grep 'Website Draft URL' &&
             echo "{\"body\": \"${body}\"}" &&
