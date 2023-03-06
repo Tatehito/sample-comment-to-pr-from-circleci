@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Deploy Preview
           command: |
-            `yarn netlify deploy --build --context deploy-preview --dir ./_site --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}` >> $DEPLOY_PREVIEW_RESULT &&
+            `yarn netlify deploy --build --context deploy-preview --dir ./_site --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}` > $DEPLOY_PREVIEW_RESULT &&
             echo "{$DEPLOY_PREVIEW_RESULT}"
       - run:
           name: PR Comment
