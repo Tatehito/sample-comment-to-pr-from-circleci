@@ -41,7 +41,7 @@ jobs:
             curl -X POST \
               -H "Content-Type:application/json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
-              -d echo "{\"body\":\"Website Draft URL: https://640608d5b64aaa005036ea06--scintillating-piroshki-928a9d.netlify.app\"}" \
+              -d echo "{\"body\": \"hoge\"}" \
               "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
 
 workflows:
