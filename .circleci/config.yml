@@ -37,12 +37,12 @@ jobs:
           command: |
             result=`yarn netlify deploy --build --context deploy-preview --dir ./_site --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}` &&
             echo "${result}" &&
-            export body=`echo "${result}" | grep 'Website Draft URL'` &&
-            curl -X POST \
+            body=`echo "${result}" | grep 'Website Draft URL'` &&
+            echo "curl -X POST \
               -H "Content-Type:application/json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
               -d echo "{\"body\": \"${body}\"}" \
-              "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
+              "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments""
 
 workflows:
   build:
