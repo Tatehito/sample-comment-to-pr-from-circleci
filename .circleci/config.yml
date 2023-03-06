@@ -7,33 +7,37 @@ jobs:
       - image: cimg/ruby:2.7.6-node
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Cache
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies
-      - run:
-          name: Install Dependencies
-          command: |
-            yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
-            gem install bundler
-            bundle install
-      - save_cache:
-          name: Save Cache
-          key: v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - ~/.cache/yarn
-            - ./vendor/bundle
+      # - restore_cache:
+      #     name: Restore Cache
+      #     keys:
+      #       - v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
+      #       - v1-dependencies
+      # - run:
+      #     name: Install Dependencies
+      #     command: |
+      #       yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      #       gem install bundler
+      #       bundle install
+      # - save_cache:
+      #     name: Save Cache
+      #     key: v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
+      #       - ./vendor/bundle
       # - run:
       #     name: Setup Server
       #     command: |
       #       bundle exec rake contentful && bundle exec jekyll build
+      # - run:
+      #     name: Deploy
+      #     command: |
+      #       yarn netlify deploy --build --prod \
+      #       --dir ./_site \
+      #       --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}
       - run:
           name: Deploy
           command: |
-            yarn netlify deploy --build --prod \
-            --dir ./_site \
-            --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}
+            echo 'Deploy!'
 
   build-preview:
     working_directory: ~/repo
@@ -41,33 +45,37 @@ jobs:
       - image: cimg/ruby:2.7.6-node
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Cache
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies
-      - run:
-          name: Install Dependencies
-          command: |
-            yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
-            gem install bundler
-            bundle install
-      - save_cache:
-          name: Save Cache
-          key: v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - ~/.cache/yarn
-            - ./vendor/bundle
+      # - restore_cache:
+      #     name: Restore Cache
+      #     keys:
+      #       - v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
+      #       - v1-dependencies
+      # - run:
+      #     name: Install Dependencies
+      #     command: |
+      #       yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      #       gem install bundler
+      #       bundle install
+      # - save_cache:
+      #     name: Save Cache
+      #     key: v1-dependencies-{{ checksum "yarn.lock" }}-{{ checksum "Gemfile.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
+      #       - ./vendor/bundle
       # - run:
       #     name: Setup Server
       #     command: |
       #       bundle exec rake contentful && bundle exec jekyll build
+      # - run:
+      #     name: Deploy Preview
+      #     command: |
+      #       yarn netlify deploy --build --context deploy-preview \
+      #       --dir ./_site \
+      #       --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}
       - run:
           name: Deploy Preview
           command: |
-            yarn netlify deploy --build --context deploy-preview \
-            --dir ./_site \
-            --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}
+            echo 'Deploy Preview!'
 
 workflows:
   build:
