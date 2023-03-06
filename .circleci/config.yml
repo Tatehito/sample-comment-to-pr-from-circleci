@@ -41,7 +41,7 @@ jobs:
             curl -X POST \
               -H "Content-Type:application/json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
-              -d echo "{\"body\": \"hoge\"}" \
+              -d echo '{\"body\": \"hoge\"}' \
               "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
 
 workflows:
