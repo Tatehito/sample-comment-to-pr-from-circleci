@@ -37,7 +37,7 @@ jobs:
           command: |
             result="Website Draft URL: https://64061a6de8730706caf7bad0--scintillating-piroshki-928a9d.netlify.app" &&
             echo "${result}" &&
-            body=`echo "${result}" | grep 'Website Draft URL'` &&
+            body=`echo "${result}" | grep 'Website Draft URL'` | grep -v 'Website Draft URL' &&
             echo "{\"body\": \"${body}\"}" &&
             curl -X POST \
               -H "Content-Type:application/json" \
