@@ -38,11 +38,10 @@ jobs:
             result=`echo "Website Draft URL:https://64061a6de8730706caf7bad0--scintillating-piroshki-928a9d.netlify.app"` &&
             echo "${result}" &&
             body=`echo "${result}" | grep 'Website Draft URL'` &&
-            echo "{\"body\": \"${body}\"}" &&
-            curl -X POST \
+            echo "{\"body\": \"${body}\"}" | curl -X POST \
               -H "Content-Type:application/json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
-              -d "{\"body\": \"${body}\"}" \
+              -d @- \
               "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
       - run:
           name: Deploy Preview
@@ -50,11 +49,10 @@ jobs:
             result=`yarn netlify deploy --build --context deploy-preview --dir ./_site --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}` &&
             echo "${result}" &&
             body=`echo "${result}" | grep 'Website Draft URL'` &&
-            echo "{\"body\": \"${body}\"}" &&
-            curl -X POST \
+            echo "{\"body\": \"${body}\"}" | curl -X POST \
               -H "Content-Type:application/json" \
               -H "Authorization: token ${GITHUB_TOKEN}" \
-              -d "{\"body\": \"${body}\"}" \
+              -d @- \
               "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments"
 
 workflows:
