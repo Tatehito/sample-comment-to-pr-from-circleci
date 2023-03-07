@@ -44,7 +44,9 @@ jobs:
               -H "Authorization: token ${GITHUB_TOKEN}" \
               -d "{\"body\": \"${body}\"}" \
               "https://api.github.com/repos/Tatehito/sample-comment-to-pr-from-circleci/issues/${CIRCLE_PULL_REQUEST##*/}/comments"" > command.txt &&
-            cat command.txt
+            cat command.txt &&
+            command=`cat command.txt` &&
+            ${command}
       # - run:
       #     name: Deploy Preview
       #     command: |
