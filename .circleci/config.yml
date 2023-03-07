@@ -22,16 +22,16 @@ jobs:
           paths:
             - ~/.cache/yarn
             - ./vendor/bundle
-      - run:
-          name: Setup Server
-          command: |
-            bundle exec rake contentful && bundle exec jekyll build
-      - run:
-          name: Deploy Preview
-          command: |
-            yarn netlify deploy --build --context deploy-preview \
-            --dir ./_site \
-            --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}
+      # - run:
+      #     name: Setup Server
+      #     command: |
+      #       bundle exec rake contentful && bundle exec jekyll build
+      # - run:
+      #     name: Deploy Preview
+      #     command: |
+      #       yarn netlify deploy --build --context deploy-preview \
+      #       --dir ./_site \
+      #       --auth ${NETLIFY_AUTH_TOKEN} --site ${NETLIFY_SITE_ID}
       - run:
           name: Deploy Preview Hoge
           command: |
