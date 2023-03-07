@@ -37,7 +37,7 @@ jobs:
           command: |
             result=`echo "WebsiteDraftURL:https://64061a6de8730706caf7bad0--scintillating-piroshki-928a9d.netlify.app"` &&
             echo "${result}" &&
-            body=`echo "${result}" | grep 'Website Draft URL'` &&
+            body=`echo "${result}" | grep 'WebsiteDraftURL'` &&
             echo "{\"body\": \"${body}\"}" > body.txt &&
             hoge=`cat body.txt` &&
             echo ${hoge} &&
